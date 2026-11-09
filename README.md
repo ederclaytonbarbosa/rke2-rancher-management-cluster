@@ -21,7 +21,7 @@ External L4 load balancer / VIP: 192.0.2.10
       +-- mgmt-cp-03 192.0.2.13 (etcd + control plane + worker)
 ```
 
-The three RKE2 server nodes form the etcd quorum and also run Rancher. A separate, stable endpoint is required in front of them. All addresses and domains in this repository are fictitious documentation values.
+The three RKE2 server nodes form the etcd quorum and also run Rancher. A separate, stable endpoint is required in front of them. The IP addresses are reserved documentation values; the `titechsolucoes.com.br` hostnames are deployment parameters owned by the project author.
 
 ## What this project demonstrates
 
@@ -97,7 +97,7 @@ sudo --preserve-env=RKE2_TOKEN \
   NODE_IP=192.0.2.11 \
   TLS_SANS=rke2-mgmt-api.titechsolucoes.com.br,192.0.2.10 \
   CLUSTER_INIT=true \
-  ./scripts/install-server.sh
+  bash ./scripts/install-server.sh
 ```
 
 ### 4. Join the remaining servers
@@ -110,7 +110,7 @@ sudo --preserve-env=RKE2_TOKEN \
   NODE_IP=192.0.2.12 \
   RKE2_SERVER=https://rke2-mgmt-api.titechsolucoes.com.br:9345 \
   TLS_SANS=rke2-mgmt-api.titechsolucoes.com.br,192.0.2.10 \
-  ./scripts/install-server.sh
+  bash ./scripts/install-server.sh
 ```
 
 ### 5. Configure cluster access
@@ -119,7 +119,7 @@ Copy `/etc/rancher/rke2/rke2.yaml` from the first server to the administration h
 
 ```bash
 export KUBECONFIG="$PWD/rke2-management.yaml"
-./scripts/validate-cluster.sh
+bash ./scripts/validate-cluster.sh
 ```
 
 ### 6. Install Rancher
@@ -128,7 +128,7 @@ export KUBECONFIG="$PWD/rke2-management.yaml"
 export RANCHER_HOSTNAME=rancher.titechsolucoes.com.br
 export LETSENCRYPT_EMAIL='replace-with-your-email@titechsolucoes.com.br'
 export RANCHER_BOOTSTRAP_PASSWORD='replace-at-runtime'
-./scripts/install-rancher.sh
+bash ./scripts/install-rancher.sh
 unset RANCHER_BOOTSTRAP_PASSWORD
 ```
 
