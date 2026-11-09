@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">RKE2 High-Availability Platform</title>
+  <desc id="desc">Architecture diagram for a three-node Rancher management cluster and a ten-node downstream RKE2 workload cluster.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#2563eb"/></marker>
+    <marker id="arrow-purple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#7c3aed"/></marker>
+    <marker id="arrow-green" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#16a34a"/></marker>
+    <marker id="arrow-gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#475569"/></marker>
+    <style>
+      text { font-family: Inter, Arial, sans-serif; fill: #0f172a; }
+      .title { font-size: 38px; font-weight: 700; }
+      .subtitle { font-size: 20px; fill: #475569; }
+      .section { font-size: 25px; font-weight: 700; }
+      .box-title { font-size: 22px; font-weight: 700; }
+      .node-title { font-size: 18px; font-weight: 700; }
+      .body { font-size: 16px; }
+      .small { font-size: 14px; }
+      .center { text-anchor: middle; }
+    </style>
+  </defs>
+  <rect width="1600" height="1040" fill="#f8fafc"/>
+
+  <text x="800" y="58" class="title center">RKE2 HIGH-AVAILABILITY PLATFORM</text>
+  <text x="800" y="93" class="subtitle center">Rancher Management Cluster + Importable Downstream Workload Cluster</text>
+
+  <rect x="70" y="140" width="280" height="150" rx="20" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+  <text x="210" y="178" class="box-title center">GITHUB</text>
+  <text x="210" y="215" class="body center"><tspan x="210">Actions validation</tspan><tspan x="210" dy="23">Encrypted Secrets</tspan><tspan x="210" dy="23">Inventory + install scripts</tspan></text>
+
+  <rect x="625" y="140" width="350" height="125" rx="20" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+  <text x="800" y="178" class="box-title center" fill="#075985">DNS + INTERNET</text>
+  <text x="800" y="216" class="body center" fill="#0c4a6e"><tspan x="800">rancher.titechsolucoes.com.br</tspan><tspan x="800" dy="23">Let's Encrypt ACME</tspan></text>
+
+  <rect x="665" y="305" width="270" height="95" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="800" y="340" class="box-title center" fill="#5b21b6">HAProxy</text>
+  <text x="800" y="371" class="body center" fill="#5b21b6">API / TLS entry point</text>
+  <line x1="800" y1="265" x2="800" y2="305" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"/>
+
+  <rect x="70" y="470" width="660" height="440" rx="22" fill="#ecfeff" stroke="#0891b2" stroke-width="3"/>
+  <text x="400" y="512" class="section center" fill="#155e75">MANAGEMENT CLUSTER — RKE2</text>
+  <text x="400" y="544" class="body center" fill="#0e7490">3 nodes — etcd + control plane + worker on every node</text>
+
+  <g>
+    <rect x="105" y="585" width="170" height="150" rx="18" fill="#cffafe" stroke="#0e7490" stroke-width="2"/>
+    <text x="190" y="620" class="node-title center">MGMT-01</text>
+    <text x="190" y="664" class="body center"><tspan x="190">etcd</tspan><tspan x="190" dy="22">control plane</tspan><tspan x="190" dy="22">worker</tspan></text>
+    <rect x="315" y="585" width="170" height="150" rx="18" fill="#cffafe" stroke="#0e7490" stroke-width="2"/>
+    <text x="400" y="620" class="node-title center">MGMT-02</text>
+    <text x="400" y="664" class="body center"><tspan x="400">etcd</tspan><tspan x="400" dy="22">control plane</tspan><tspan x="400" dy="22">worker</tspan></text>
+    <rect x="525" y="585" width="170" height="150" rx="18" fill="#cffafe" stroke="#0e7490" stroke-width="2"/>
+    <text x="610" y="620" class="node-title center">MGMT-03</text>
+    <text x="610" y="664" class="body center"><tspan x="610">etcd</tspan><tspan x="610" dy="22">control plane</tspan><tspan x="610" dy="22">worker</tspan></text>
+  </g>
+
+  <rect x="115" y="780" width="570" height="85" rx="16" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/>
+  <text x="400" y="815" class="node-title center" fill="#1e3a8a">Rancher HA — 3 replicas</text>
+  <text x="400" y="844" class="small center" fill="#1e3a8a">cert-manager • automatic Let's Encrypt renewal • backup routines</text>
+
+  <rect x="870" y="470" width="660" height="440" rx="22" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+  <text x="1200" y="512" class="section center" fill="#1e40af">DOWNSTREAM WORKLOAD CLUSTER — RKE2</text>
+  <text x="1200" y="544" class="body center" fill="#1d4ed8">Independent operation or secure import into Rancher</text>
+
+  <g>
+    <rect x="915" y="585" width="170" height="125" rx="18" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="1000" y="619" class="node-title center">CP-01</text>
+    <text x="1000" y="654" class="body center"><tspan x="1000">etcd</tspan><tspan x="1000" dy="22">control plane</tspan></text>
+    <rect x="1115" y="585" width="170" height="125" rx="18" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="1200" y="619" class="node-title center">CP-02</text>
+    <text x="1200" y="654" class="body center"><tspan x="1200">etcd</tspan><tspan x="1200" dy="22">control plane</tspan></text>
+    <rect x="1315" y="585" width="170" height="125" rx="18" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="1400" y="619" class="node-title center">CP-03</text>
+    <text x="1400" y="654" class="body center"><tspan x="1400">etcd</tspan><tspan x="1400" dy="22">control plane</tspan></text>
+  </g>
+
+  <rect x="915" y="755" width="570" height="110" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="1200" y="793" class="box-title center" fill="#166534">7 WORKER NODES</text>
+  <text x="1200" y="824" class="body center" fill="#166534">Ingress Controller → Services → Application Pods</text>
+  <text x="1200" y="850" class="body center" fill="#166534">Horizontal scaling and workload isolation</text>
+
+  <line x1="720" y1="400" x2="520" y2="470" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)"/>
+  <line x1="880" y1="400" x2="1080" y2="470" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)"/>
+  <line x1="210" y1="290" x2="300" y2="470" stroke="#475569" stroke-width="3" stroke-dasharray="10 10" marker-end="url(#arrow-gray)"/>
+
+  <rect x="730" y="648" width="140" height="38" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="800" y="673" class="small center" fill="#166534" font-weight="700">SECURE IMPORT</text>
+  <line x1="730" y1="706" x2="870" y2="706" stroke="#16a34a" stroke-width="4" marker-end="url(#arrow-green)"/>
+
+  <text x="800" y="960" class="small center" fill="#475569">Portfolio reference architecture • Configurable node IPs • Ubuntu or Oracle Linux</text>
+  <text x="800" y="983" class="small center" fill="#475569">No credentials, tokens, private IP addresses, or production data are stored in the diagram or repository.</text>
+</svg>
