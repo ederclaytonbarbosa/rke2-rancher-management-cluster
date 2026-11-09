@@ -1,0 +1,20 @@
+replicas: 3
+antiAffinity: preferred
+ingress:
+  ingressClassName: nginx
+  extraAnnotations:
+    cert-manager.io/renew-before-percentage: "33"
+    cert-manager.io/private-key-rotation-policy: Always
+    cert-manager.io/revision-history-limit: "3"
+  tls:
+    source: letsEncrypt
+letsEncrypt:
+  environment: production
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: "2"
+    memory: 4Gi
+
