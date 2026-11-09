@@ -1,0 +1,14 @@
+# Sensitive runtime files
+*.kubeconfig
+*kubeconfig*
+rke2*.yaml
+*.token
+*.key
+*.pem
+.env
+
+# Local tooling
+.DS_Store
+.idea/
+.vscode/
+
