@@ -1,0 +1,23 @@
+name: Validate portfolio project
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell scripts
+        run: shellcheck scripts/*.sh
+      - name: Reject common secret files
+        run: |
+          if find . -type f \( -name '*.key' -o -name '*.pem' -o -name '*.token' -o -name '*kubeconfig*' \) -print -quit | grep -q .; then
+            echo 'A sensitive file pattern was committed.' >&2
+            exit 1
+          fi
+
