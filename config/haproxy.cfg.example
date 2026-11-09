@@ -1,0 +1,52 @@
+global
+  log stdout format raw local0
+  maxconn 4096
+
+defaults
+  log global
+  mode tcp
+  option tcplog
+  timeout connect 10s
+  timeout client  1m
+  timeout server  1m
+
+frontend rke2_registration
+  bind 192.0.2.10:9345
+  default_backend rke2_registration_nodes
+
+backend rke2_registration_nodes
+  option tcp-check
+  server mgmt-cp-01 192.0.2.11:9345 check
+  server mgmt-cp-02 192.0.2.12:9345 check
+  server mgmt-cp-03 192.0.2.13:9345 check
+
+frontend kubernetes_api
+  bind 192.0.2.10:6443
+  default_backend kubernetes_api_nodes
+
+backend kubernetes_api_nodes
+  option tcp-check
+  server mgmt-cp-01 192.0.2.11:6443 check
+  server mgmt-cp-02 192.0.2.12:6443 check
+  server mgmt-cp-03 192.0.2.13:6443 check
+
+frontend rancher_https
+  bind 192.0.2.10:443
+  default_backend rancher_https_nodes
+
+backend rancher_https_nodes
+  option tcp-check
+  server mgmt-cp-01 192.0.2.11:443 check
+  server mgmt-cp-02 192.0.2.12:443 check
+  server mgmt-cp-03 192.0.2.13:443 check
+
+frontend rancher_http
+  bind 192.0.2.10:80
+  default_backend rancher_http_nodes
+
+backend rancher_http_nodes
+  option tcp-check
+  server mgmt-cp-01 192.0.2.11:80 check
+  server mgmt-cp-02 192.0.2.12:80 check
+  server mgmt-cp-03 192.0.2.13:80 check
+
