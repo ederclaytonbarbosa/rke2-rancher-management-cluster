@@ -1,0 +1,18 @@
+cluster:
+  name: rke2-management
+  registration_address: rke2-mgmt-api.titechsolucoes.com.br
+  registration_vip: 192.0.2.10
+  rancher_hostname: rancher.titechsolucoes.com.br
+  rke2_channel: stable
+
+nodes:
+  - name: mgmt-cp-01
+    address: 192.0.2.11
+    roles: [etcd, control-plane, worker]
+  - name: mgmt-cp-02
+    address: 192.0.2.12
+    roles: [etcd, control-plane, worker]
+  - name: mgmt-cp-03
+    address: 192.0.2.13
+    roles: [etcd, control-plane, worker]
+
