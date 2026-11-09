@@ -4,6 +4,14 @@ Production-oriented reference implementation for a highly available Rancher mana
 
 ## Architecture
 
+![RKE2 high-availability platform architecture](docs/architecture/rke2-platform-overview.svg)
+
+The diagram shows the three-node all-role management cluster, Rancher HA, DNS and TLS flow, HAProxy entry point, GitHub automation, and the secure import path for the downstream workload cluster.
+
+- [Open the high-resolution PNG](docs/architecture/rke2-platform-overview.png)
+- [Edit the source in Excalidraw](docs/architecture/rke2-platform-overview.excalidraw)
+- [LinkedIn/portfolio visual](docs/architecture/rke2-high-availability-linkedin.png)
+
 ```text
 Administrators
       |
@@ -54,6 +62,10 @@ See [docs/network-requirements.md](docs/network-requirements.md) before installa
 ├── config/
 │   └── haproxy.cfg.example
 ├── docs/
+│   ├── architecture/
+│   │   ├── rke2-platform-overview.excalidraw
+│   │   ├── rke2-platform-overview.svg
+│   │   └── rke2-platform-overview.png
 │   ├── network-requirements.md
 │   ├── certificate-lifecycle.md
 │   └── operations.md
@@ -153,4 +165,3 @@ RKE2 defaults to the `stable` channel. Pin `RKE2_VERSION` when change control re
 - [RKE2 configuration](https://docs.rke2.io/install/configuration)
 - [Rancher HA installation on RKE2](https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-cluster-setup/rke2-for-rancher)
 - [Rancher Helm installation](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster)
-
